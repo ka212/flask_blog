@@ -1,0 +1,18 @@
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    image_file TEXT NOT NULL DEFAULT 'default.jpg',
+    password TEXT NOT NULL
+);
+
+DROP TABLE IF EXISTS post;
+CREATE TABLE post (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    date_posted DATETIME NOT NULL,
+    content TEXT NOT NULL,
+    user_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user (id)
+);
